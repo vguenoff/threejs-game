@@ -1,5 +1,6 @@
-import * as THREE from "three"
-import "./style.css"
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import './style.css'
 
 // Sizes
 const useWindowDimensions = () => [window.innerWidth, window.innerHeight]
@@ -11,12 +12,15 @@ const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000)
 camera.position.z = 5
 
 // Renderer
-const canvas = document.querySelector(".webgl") as HTMLCanvasElement
+const canvas = document.querySelector('.webgl') as HTMLCanvasElement
 const renderer = new THREE.WebGLRenderer({ canvas })
 renderer.setSize(w, h)
 
+// Controls
+new OrbitControls(camera, renderer.domElement)
+
 // Resize
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
   ;[w, h] = useWindowDimensions()
   camera.aspect = w / h
   camera.updateProjectionMatrix()
