@@ -1,6 +1,6 @@
 [X] Project setup
 [X] Materials and lightning
-[ ] Shadows
+[X] Shadows
 [ ] Gravity
 [ ] Movement
 [ ] Full collision detection

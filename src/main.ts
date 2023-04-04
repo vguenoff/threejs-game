@@ -14,6 +14,7 @@ camera.position.z = 5
 // Renderer
 const canvas = document.querySelector('.webgl') as HTMLCanvasElement
 const renderer = new T.WebGLRenderer({ canvas })
+renderer.shadowMap.enabled = true
 renderer.setSize(w, h)
 
 // Controls
@@ -33,16 +34,19 @@ const ground = new T.Mesh(
   new T.MeshStandardMaterial({ color: 0x0000ff })
 )
 ground.position.y = -2
+ground.receiveShadow = true
 scene.add(ground)
 
 const cube = new T.Mesh(
   new T.BoxGeometry(1, 1, 1),
   new T.MeshStandardMaterial({ color: 0x00ff00 })
 )
+cube.castShadow = true
 scene.add(cube)
 
 const light = new T.DirectionalLight(0xffffff, 1)
 light.position.set(0, 3, 2)
+light.castShadow = true
 scene.add(light)
 
 // Animate
