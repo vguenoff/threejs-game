@@ -1,5 +1,5 @@
 [X] Project setup
-[ ] Materials and lightning
+[X] Materials and lightning
 [ ] Shadows
 [ ] Gravity
 [ ] Movement
