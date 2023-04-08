@@ -2,6 +2,8 @@ import * as T from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import './style.css'
 
+import Box from './lib/Box'
+
 // Sizes
 const useWindowDimensions = () => [window.innerWidth, window.innerHeight]
 let [w, h] = useWindowDimensions()
@@ -30,18 +32,12 @@ window.addEventListener('resize', () => {
 })
 
 // View
-const ground = new T.Mesh(
-  new T.BoxGeometry(5, 0.5, 10),
-  new T.MeshStandardMaterial({ color: 0x0000ff })
-)
+const ground = new Box({ width: 5, height: 0.5, depth: 10, color: 0x0000ff })
 ground.position.y = -2
 ground.receiveShadow = true
 scene.add(ground)
 
-const cube = new T.Mesh(
-  new T.BoxGeometry(1, 1, 1),
-  new T.MeshStandardMaterial({ color: 0x00ff00 })
-)
+const cube = new Box({ width: 1, height: 1, depth: 1, color: 0x00ff00 })
 cube.castShadow = true
 scene.add(cube)
 
@@ -50,10 +46,11 @@ light.position.set(0, 3, 2)
 light.castShadow = true
 scene.add(light)
 
+console.log(cube.height)
+
 // Animate
 function animate(elapsedTime: number) {
-  cube.rotation.x = elapsedTime
-  cube.rotation.y = elapsedTime
+  // cube.position.y += -0.01
   controls.update()
 }
 
