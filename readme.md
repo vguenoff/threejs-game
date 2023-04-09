@@ -1,7 +1,7 @@
 [X] Project setup
 [X] Materials and lightning
 [X] Shadows
-[ ] Gravity
+[X] Gravity
 [ ] Movement
 [ ] Full collision detection
 [ ] Enemy spawning

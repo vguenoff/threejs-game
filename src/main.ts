@@ -17,6 +17,7 @@ camera.position.z = 5
 // Renderer
 const canvas = document.querySelector('.webgl') as HTMLCanvasElement
 const renderer = new T.WebGLRenderer({ canvas })
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.shadowMap.enabled = true
 renderer.setSize(w, h)
 
@@ -66,7 +67,7 @@ function loop() {
   animate(clock.getElapsedTime())
   renderer.render(scene, camera)
 
-  cube.collision(ground)
+  cube.update(ground)
 
   requestAnimationFrame(loop)
 }
