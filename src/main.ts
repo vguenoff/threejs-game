@@ -32,12 +32,22 @@ window.addEventListener('resize', () => {
 })
 
 // View
-const ground = new Box({ width: 5, height: 0.5, depth: 10, color: 0x0000ff })
-ground.position.y = -2
+const ground = new Box({
+  width: 5,
+  height: 0.5,
+  depth: 10,
+  color: 0x0000ff,
+  boxPosition: { x: 0, y: -2, z: 0 },
+})
 ground.receiveShadow = true
 scene.add(ground)
 
-const cube = new Box({ width: 1, height: 1, depth: 1, color: 0x00ff00 })
+const cube = new Box({
+  width: 1,
+  height: 1,
+  depth: 1,
+  velocity: { x: 0, y: -0.01, z: 0 },
+})
 cube.castShadow = true
 scene.add(cube)
 
@@ -46,11 +56,8 @@ light.position.set(0, 3, 2)
 light.castShadow = true
 scene.add(light)
 
-console.log(cube.height)
-
 // Animate
 function animate(elapsedTime: number) {
-  // cube.position.y += -0.01
   controls.update()
 }
 
@@ -58,6 +65,9 @@ function animate(elapsedTime: number) {
 function loop() {
   animate(clock.getElapsedTime())
   renderer.render(scene, camera)
+
+  cube.collision(ground)
+
   requestAnimationFrame(loop)
 }
 
