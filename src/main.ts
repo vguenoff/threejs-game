@@ -11,7 +11,6 @@ let [w, h] = useWindowDimensions()
 // Scene
 const scene = new T.Scene()
 const camera = new T.PerspectiveCamera(75, w / h, 0.1, 1000)
-const clock = new T.Clock()
 camera.position.z = 5
 
 // Renderer
@@ -22,7 +21,7 @@ renderer.shadowMap.enabled = true
 renderer.setSize(w, h)
 
 // Controls
-const controls = new OrbitControls(camera, renderer.domElement)
+new OrbitControls(camera, renderer.domElement)
 
 // Resize
 window.addEventListener('resize', () => {
@@ -57,14 +56,8 @@ light.position.set(0, 3, 2)
 light.castShadow = true
 scene.add(light)
 
-// Animate
-function animate(elapsedTime: number) {
-  controls.update()
-}
-
 // Loop
 function loop() {
-  animate(clock.getElapsedTime())
   renderer.render(scene, camera)
 
   cube.update(ground)
